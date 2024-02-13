@@ -6,12 +6,12 @@ import { useAuth as firebaseAuth } from '@vueuse/firebase/useAuth'
 
 const auth = getAuth(firebaseApp)
 
-const { isAutheticated, user } = firebaseAuth(auth)
+const { isAuthenticated, user } = firebaseAuth(auth)
 
 export const useAuth = () => {
     const login = async (username, password) => {
         await signInWithEmailAndPassword(auth, username, password)
-        return isAutheticated.value
+        return isAuthenticated.value
     }
 
     const logout = async () => {
@@ -19,6 +19,6 @@ export const useAuth = () => {
         router.puch({ name: 'Home'})
     }
 
-    return {isAutheticated, user, login, logout}
+    return {isAuthenticated, user, login, logout}
 
 }
